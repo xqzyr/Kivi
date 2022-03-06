@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const userRoute = require("./routes/users.js");
+const authRoute = require("./routes/auth.js");
 
 // Loads env vars from .env file into process.env
 require("dotenv").config();
@@ -24,6 +26,5 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
-app.get("/", (req, res) => {
-    res.send("Working");
-});
+app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
