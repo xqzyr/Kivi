@@ -5,19 +5,16 @@ const morgan = require("morgan");
 const userRoute = require("./routes/users.js");
 const authRoute = require("./routes/auth.js");
 
+const app = express();
+
 // Loads env vars from .env file into process.env
 require("dotenv").config();
 
-mongoose.connect(
-    process.env.MONGO_URL,
-    { useNewUrlParser: true, unseUnifiedTopology: true },
-    () => {
-        console.log("Connected to MongoDB");
-    }
-);
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }, () => {
+    console.log("Connected to MongoDB");
+});
 
-const app = express();
-app.listen(3000, () => {
+app.listen(8000, () => {
     console.log("Backend server is running!");
 });
 
